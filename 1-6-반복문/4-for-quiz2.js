@@ -7,7 +7,7 @@ let count = 0;
 let resultText = '';
 for (let i = 1; i <= targetNumber; i++) {
   if (targetNumber % i === 0) {
-    resultText += `${i}\n`
+    resultText += `${i}\n`;
     count++;
   }
 }
