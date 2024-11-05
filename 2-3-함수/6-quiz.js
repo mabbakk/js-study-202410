@@ -15,9 +15,6 @@ Math.round(5.78999); // 반올림 -> 6
 
 
 
-
-
-
 //함수는 컴팩트할수록 좋음.
 //하나의 함수에는 하나의 동작만 처리하는 것이 좋다.
 
@@ -31,13 +28,12 @@ console.log(myBmi);
 
 function judgeBmi(bmi) {
   //bmi를 가지고 체중상태를 출력하는 동작
-  // 판별 분기
   if (bmi > 25) {
     console.log('당신은 과체중입니다.');
   } else if (bmi < 18.5) {
-    console.log('당신은 저체중입니다.');
+    console.log('당신은 저체중입니다.');    
   } else {
-    console.log('당신은 정상체중입니다.');
+    console.log('당신은 정상체중입니다.');   
   }
 }
 
@@ -46,27 +42,8 @@ function calcBMI(cm, kg) {
   let m = cm / 100;
   let bmi = kg / (m * m);
 
-  // bmi 판별 출력
+  //bmi 판별 출력
   judgeBmi(bmi);
 
   return bmi;
 }
-
-
-//반올림 처리
-/*
-  Math.round(3.78) -> 4
-  3.3897 -> 3.4
-  3.3897 * 10 -> 33.897 -> round 반올림 ->34 / 10 -> 3.4
-*/
-
-function round(n, position) {
-  return Math.round(n * 10 ** position) / 10 ** position;
-}
-
-console.log(round (98.3476, 4));
-
-
-console.log(
-  `키 -> ${h}cm, 체중 -> ${w}kg의 체질량지수는 ${round(myBmi, 2)}입니다.`
-);
