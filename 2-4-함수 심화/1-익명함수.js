@@ -17,7 +17,7 @@ const add = function (n1, n2) {
 
 // console.log(typeof add);
 const r1 = add(10, 20);
-console.log(`r1: ${r1}`);
+console.log(`r1: ${r1}`);add.apply.apply.apply.apply.apply.
 
 console.log('================');
 

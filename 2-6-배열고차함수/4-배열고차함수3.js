@@ -42,7 +42,7 @@ const userList = [
 // ex) 이름이 주차왕인 객체의 인덱스는 몇 번인가?
 
 //   const idx1 = ['a', 'b', 'c'].indexOf('d');
-//   console.log(`idv1 : ${idx1}`);
+//   console.log(`idv1 : ${idx1}`); 
 
 // function findIndex(callbackFn) {
 //   for (let i = 0; i < userList.length; i++) {

@@ -148,6 +148,7 @@ const userList = [
   
   
   // 하나의 함수로 위의 모든것을 처리할 수 있도록 구현
+
   // 특정 배열에서 특정 데이터들을 추출해서 새 배열로 만들거야!
   function map(callback) { // callback: 니가 추출하고 싶은거 보내줘
     const mappedArray = [];
@@ -159,28 +160,16 @@ const userList = [
   
   console.log('================');
   
-  const m1 = map(function (user) {
-    return user.job;
-  });
+  const m1 = map(user => user.job);
   console.log(m1);
   
-  const m2 = map(function (user) {
-    return user.address;
-  });
+  const m2 = map(user => user.address);
   console.log(m2);
   
-  const m3 = map(function (user) {
-    return user.hobbys[1];
-  });
+  const m3 = map(user => user.hobbys[1]);
   console.log(m3);
   
   // 회원목록에서 이름이랑 직업만 추출하고 싶어
-  const m4 = map(function (user) { 
-    const newObj = {
-      userName: user.userName,
-      job: user.job
-    };
-    return newObj;
-  });
+  const m4 = map(user => ({name: user.userName,job: user.job}))
   console.log(m4); // [ {이름, 직업}, {}, {}, {} ]
   

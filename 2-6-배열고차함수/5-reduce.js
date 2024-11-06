@@ -15,8 +15,9 @@ const nums = [10, 20, 30, 40, 50];
 
   -> reduce는 마지막에 accumulator의 리턴값을 리턴
 */
+
 const c = nums.reduce(function (a, b) {
-  // console.log(`a: ${a}`);
+  // console.log(`a: $ {a}`);
   // console.log(`b: ${b}`);
   // console.log('==========');
   return a + b; // 다음 accumulator의 값
@@ -96,6 +97,9 @@ const totalSweet = appleBasket.reduce((acc, curr) => acc + curr.sweet, 0);
 
 console.log(`totalSweet: ${totalSweet}`);
 
+
+console.log('===================');
+
 /* 
  색깔별로 사과 카운트하기
 
@@ -108,7 +112,9 @@ const resultObj = {};
 for (const apple of appleBasket) {
   const color = apple.color;
   // 이 컬러가 지금 처음등장한 컬러인지, 기존에 저장된 컬러인지
+
   // 처음등장했으면 프로퍼티를 생성, 기존에 있던 컬러면 카운트값만 1추가
+
   if (color in resultObj) { // in은 해당 키가 객체 안에 있는지 확인
     resultObj[color]++;
   } else {  // 해당 색깔이 처음 등장한 경우

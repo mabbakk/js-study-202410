@@ -51,6 +51,8 @@ const foods = ['제육볶음', '김치찌개', '육개장', '파스타', '된장
 // }
 // console.log('=====================');
 
+
+
 // forEach(): 배열의 반복문을 처리
 // numbers.forEach(function (n, i, arr) {
 //   console.log(`n: ${n}`);
