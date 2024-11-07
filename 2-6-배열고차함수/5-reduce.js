@@ -157,6 +157,3 @@ function myReduce(callbackFn, initialValue) {
 
 const total = appleBasket.re((sweetTotal, apple) => sweetTotal + apple.sweet, 0);
 console.log(`total : ${total}`);
-
-
-

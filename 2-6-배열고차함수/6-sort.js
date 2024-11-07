@@ -20,7 +20,7 @@ const foods = ['짜장면', '짬뽕', '가재튀김', '호빵', ]
 // 양수일 때 자리가 바뀌도록 설계되어있음.
 foods.sort((a, b) => {
     if (a > b) return 1;
-    else if (a < b) return -1;
+    else if (a < b) return -1; 
     else return 0;
 });
 
@@ -94,6 +94,9 @@ const userList = [
 
 // 나이 적은 순으로 정렬 (나이 오른차 정렬)
 // userList.sort((a, b) => a.age - b.age);
+
+
+
 
 // 급여가 높은 순 ( 급여 내림차 정렬 )
 userList.sort((a, b) => b.salary - a.salary);
