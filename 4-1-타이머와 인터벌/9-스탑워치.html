@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>스탑워치</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    .stopwatch {
+      font-size: 2rem;
+      margin: 20px;
+    }
+    .buttons, .log-container {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .log-container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .log-entry {
+      font-size: 1rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>스탑워치</h1>
+  <div class="stopwatch" id="display">00:00:00</div>
+  <div class="buttons">
+    <button id="start">시작</button>
+    <button id="pause" disabled>일시정지</button>
+    <button id="reset">초기화</button>
+  </div>
+  <div class="log-container" id="logContainer">
+    <h2>일시정지 로그</h2>
+  </div>
+
+
+
+
+  <script>
+    let timerInterval;
+    let elapsedTime = 0; // 경과 시간 (밀리초 단위)
+    let isRunning = false;
+
+    const display = document.getElementById("display");
+    const startButton = document.getElementById("start");
+    const pauseButton = document.getElementById("pause");
+    const resetButton = document.getElementById("reset");
+    const logContainer = document.getElementById("logContainer");
+
+    // 시간 표시 업데이트
+    function updateDisplay() {
+      const minutes = String(Math.floor(elapsedTime / 60000)).padStart(2, "0");
+      const seconds = String(Math.floor(elapsedTime % 60000 / 1000)).padStart(2, "0");
+      // 초 단위는 60초 기준. 1초 = 1000밀리초, 60초 = 60000밀리초
+      // 앞의 수를 뒤에 60000으로 나누었을 때, 앞의 수가 더 작으면 나머지는 앞의 수 그 자체가 된다.
+      // 그리고 그 수를 뒤에 1000으로 나누면 ex 54000 % 6000 / 1000 = 54초가 되는겨.
+
+      // 뒤에 padStart는 시작하는 숫자를 몇 자리까지 나타낼지 정할 수 있음. padStart(2, "0")은 두자리 수로 표현하고,
+      // 두 자리 수 중 뒷자리가 9를 넘어가지 않으면 앞자리는 0으로 표기한다.
+      const milliseconds = String(Math.floor((elapsedTime % 1000) / 10)).padStart(2, "0");
+      display.textContent = `${minutes}:${seconds}:${milliseconds}`;
+    }
+
+    // 스탑워치 시작
+    function startStopwatch() {
+      isRunning = true;
+      startButton.disabled = true;  // 처음 시작 시 disaled였다가 시작이 되면 start 버튼이 able로 변경.
+      pauseButton.disabled = false;
+      pauseButton.textContent = "일시정지";
+
+      timerInterval = setInterval(() => {
+        elapsedTime += 10; // 10밀리초씩 증가
+        updateDisplay();
+      }, 10);
+    }
+
+    // 스탑워치 일시정지
+    function pauseStopwatch() {
+      if (isRunning) {
+        _______;
+        isRunning = false;
+        _______; // 로그에 일시정지 시간 추가
+        pauseButton.textContent = "재개";
+      } else {
+        startStopwatch();
+        ________ = "일시정지";
+      }
+    }
+
+    // 초기화
+    function resetStopwatch() {
+      clearInterval(timerInterval);
+      elapsedTime = 0;
+      isRunning = false;
+      updateDisplay();
+      _________ = false;
+      pauseButton.disabled = true;
+      pauseButton.textContent = "일시정지";
+      logContainer.innerHTML = "<h2>일시정지 로그</h2>"; // 로그 초기화
+    }
+
+    // 일시정지 로그 추가
+    function addLogEntry() {
+      const logEntry = document.createElement("div");
+      logEntry.classList.add("log-entry");
+      logEntry.textContent = `일시정지 시간: ${display.textContent}`;
+      logContainer.appendChild(logEntry);
+    }
+
+    // 이벤트 리스너 설정
+    startButton.addEventListener("click", startStopwatch);
+    pauseButton.addEventListener("click", pauseStopwatch);
+    resetButton.addEventListener("click", resetStopwatch);
+  </script>
+</body>
+</html>

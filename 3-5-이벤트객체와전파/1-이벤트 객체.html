@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p>아무 곳이나 클릭하세요</p>
+  <em class="msg"></em>
+
+  <hr>
+
+  <input type="text" id="txt">
+  <p class="show"></p>
+
+  <script>
+    document.addEventListener('click', function(e) {  //페이지 전체에 어떤 작용을 할 때 document로 시작하면 된다.
+      // console.log(e);
+      const $msg = document.querySelector('.msg');
+
+      if (e.shiftKey) {
+      $msg.textContent = `x: ${e.x}, y: ${e.y}`
+      } else {
+        $msg.textContent = '메렁';
+      }
+    });
+
+
+    const $txtInput = document.getElementById('txt');
+
+    $txtInput.addEventListener('keyup', (e) => {
+      console.log(e);
+      
+      const $show = document.querySelector('.show');
+
+      if (e.key === 'Enter') {
+        $show.textContent = $txtInput.value;
+        $txtInput.value = '';
+      }
+
+    });
+  </script>
+</body>
+</html>

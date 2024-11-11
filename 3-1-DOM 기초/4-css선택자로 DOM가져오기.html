@@ -18,13 +18,13 @@
     // const $grape = document.querySelector('.grape');
     // const $grape = document.querySelector('ul li:nth-child(3)');
     // const $grape = document.querySelector('.banana + li');
-    // const $grape = document.getElementById('gp');
-    const $grape = document.querySelector('#gp');
+    // const $grape = document.getElementById('gp');  //Id로 가져오는 것이기 때문에 gp 앞에 #d을 붙이지 않음!!
+    const $grape = document.querySelector('#gp');    // Id가 아닌 css 선택자로 가져오는 것이기 때문에 앞에 꼭 #을 붙여줘야 함!!
     $grape.style.color = 'violet';
 
     // querySelector는 해당 선택자에 일치하는 가장 처음 발견된
     // 요소 하나를 가져옴
-    const x = document.querySelectorAll('.fruit');
+    const x = document.querySelectorAll('.fruit');    //ALL을 붙이지 않고 그냥 기본형으로 가면 위에 li들 중에 가장 첫 번째인 '사과'에만 폰트 italic이 적용됨!
     x.push('메롱');
     
     console.log(x);
@@ -33,8 +33,6 @@
       li.style.fontStyle = 'italic';
       li.style.border = '1px dashed orange';
     });
-    
-    
 
   </script>
 </body>
