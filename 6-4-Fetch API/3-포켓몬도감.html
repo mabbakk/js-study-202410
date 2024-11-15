@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+  </style>
+</head>
+<body>
+  <h1>포켓몬 도감</h1>
+  <button id="prev">이전</button>
+  <button id="next">다음</button>
+
+  <script>
+    const $prev = document.getElementById('prev');
+    const $next = document.getElementById('next');
+
+    $prev.addEventListener('click', e => {
+      offset -=20;
+      getpokemon();
+    });
+    $next.addEventListener('click', e => {
+      offset +=20;
+      getpokemon();
+    });
+
+    // let offset = 0;
+
+    function getpokemon() {
+      fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`)
+      .then(res => res.json())
+      .then
+    }
+  </script>
+</body>
+</html>
