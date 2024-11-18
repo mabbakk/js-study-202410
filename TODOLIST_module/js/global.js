@@ -1,44 +1,20 @@
-//========= 전역 변수 영역 ========//
+import { $todoListUl, $addBtn, $todoTextInput } from "./dom.js";
+import globalObject from "./global.js";
 
-// 현재 수정모드에 들어갔는지 여부
-let isEnterMode = false;
-
-// 서버와 통신할 데이터
-let todos = [
-  {
-    id: '1',
-    text: '장보기',
-    done: true,
-  },
-  {
-    id: '2',
-    text: '점심 메뉴 정하기',
-    done: false,
-  },
-  {
-    id: '3',
-    text: '게임하기',
-    done: true,
-  },
-];
-
-//========= DOM 가져오기 영역 ========//
-const $todoListUl = document.querySelector('.todo-list');
-const $addBtn = document.getElementById('add');
-const $todoTextInput = document.getElementById('todo-text');
+const { isEnterMode } = globalObject;
 
 //========= 함수 정의 영역 ========//
 
 // 로컬 스토리지에 todos배열 저장해두기
 function saveTodos() {
-  localStorage.setItem('todoList', JSON.stringify(todos));
+  localStorage.setItem('todoList', JSON.stringify(globalObject.todos));
 }
 
 // 로컬 스토리에서 todos 불러와서 렌더링
 function loadTodos() {
   const todosJson = localStorage.getItem('todoList');
   if (todosJson) {
-    todos = JSON.parse(todosJson);
+    globalObject.todos = JSON.parse(todosJson);
   }
   renderTodos();
 }
@@ -49,7 +25,7 @@ function renderTodos() {
   $todoListUl.innerHTML = '';
 
   // 1. todos를 반복한다.
-  todos.forEach(todo => {
+  globalObject.todos.forEach((todo) => {
     // 2. li태그를 생성한다.
     const $li = document.createElement('li');
     // 3. li태그에 들어갈 속성들을 설정한다.
@@ -64,7 +40,7 @@ function renderTodos() {
       <div class="modify"><span class="lnr lnr-undo"></span></div>
       <div class="remove"><span class="lnr lnr-cross-circle"></span></div>
     `;
-    // 5. 이미 완료된 할 일은 체크처리하기 
+    // 5. 이미 완료된 할 일은 체크처리하기
     const $checkbox = $li.querySelector('input[type=checkbox]');
     $checkbox.checked = todo.done;
 
@@ -97,7 +73,7 @@ function todoInsertHandler(e) {
     done: false
   };
   // 3. 생성된 객체를 todos배열에 추가
-  todos.push(newTodo);
+  globalObject.todos.push(newTodo);
   
   // 4. 배열을 리렌더링
   renderTodos();
@@ -119,7 +95,7 @@ function todoRemoveHandler(e) {
   // 인덱스를 찾아야 함. -> 태그에 들어있는 id값을 찾아내야 함
   const dataId = $targetLi.dataset.id;
 
-  todos = todos.filter(todo => dataId !== todo.id);
+  globalObject.todos = globalObject.todos.filter((todo) => dataId !== todo.id);
 
   // 배열 리렌더링
   renderTodos();
@@ -136,7 +112,7 @@ function todoDoneHandler(e) {
   const dataId = $targetLi.dataset.id;
   // 그 아이디로 배열에 접근해서 해당 객체를 찾아 
   // done프로퍼티값을 반대로 수정함
-  const todo = todos.find(todo => todo.id === dataId);
+  const todo = globalObject.todos.find(todo => todo.id === dataId);
   todo.done = !todo.done;
 
   // 리렌더링
@@ -147,7 +123,7 @@ function todoDoneHandler(e) {
 function todoEnterModifyModeHandler(e) {
   if (isEnterMode || !e.target.matches('.modify span.lnr-undo')) return;
 
-  isEnterMode = true;
+  globalObject.isEnterMode = true;
   /*
     1. span.text를 input.modify-input으로 교체
      - 클릭한 버튼 근처에 있는 span.text를 탐색
@@ -188,7 +164,7 @@ function todoModifyHandler(e) {
   */
   const $li = e.target.closest('.todo-list-item');
   const dataId = $li.dataset.id;
-  const foundTodo = todos.find(todo => todo.id === dataId);
+  const foundTodo = globalObject.todos.find((todo) => todo.id === dataId);
   const $textInput = $li.querySelector('.modify-input');
   const newText = $textInput.value;
   
@@ -196,21 +172,9 @@ function todoModifyHandler(e) {
 
   renderTodos();
 
-  isEnterMode = false;
+  globalObject.isEnterMode = false;
   
 }
-//========= 이벤트 핸들러 등록 영역 ========//
-
-// 할 일 추가 기능
-$addBtn.addEventListener('click', todoInsertHandler);
-// 할 일 삭제 기능
-$todoListUl.addEventListener('click', todoRemoveHandler);
-// 할 일 완료 체크 기능
-$todoListUl.addEventListener('click', todoDoneHandler);
-// 할 일 수정모드 진입 기능
-$todoListUl.addEventListener('click', todoEnterModifyModeHandler);
-// 수정 완료 기능
-$todoListUl.addEventListener('click', todoModifyHandler);
 
 //========= 코드 실행 영역 ========//
 

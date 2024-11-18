@@ -1,31 +1,9 @@
-//========= 전역 변수 영역 ========//
+import { $todoListUl, $addBtn, $todoTextInput } from "./dom.js";
+import globalObject from "./global.js";
 
-// 현재 수정모드에 들어갔는지 여부
-let isEnterMode = false;
+const {todos : todoList, isEnterMode} = globalObject;
 
-// 서버와 통신할 데이터
-let todos = [
-  {
-    id: '1',
-    text: '장보기',
-    done: true,
-  },
-  {
-    id: '2',
-    text: '점심 메뉴 정하기',
-    done: false,
-  },
-  {
-    id: '3',
-    text: '게임하기',
-    done: true,
-  },
-];
 
-//========= DOM 가져오기 영역 ========//
-const $todoListUl = document.querySelector('.todo-list');
-const $addBtn = document.getElementById('add');
-const $todoTextInput = document.getElementById('todo-text');
 
 //========= 함수 정의 영역 ========//
 
